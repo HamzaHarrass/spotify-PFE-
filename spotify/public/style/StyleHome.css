@@ -1,0 +1,252 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #wrapper {
+    margin-top: 2% ;
+    width: 100% ;
+    height: 95% ;
+  }
+
+  body {
+    background-color: black;
+    min-height: 600px;
+  }
+
+  body,
+  #wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1 {
+    font-family: "Quicksand", sans-serif !important;
+    font-size: 50px !important;
+    color: white;
+  }
+
+  #wrapper {
+    flex-direction: column;
+  }
+
+  #container {
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .disk {
+
+    width: 200px;
+    height: 400px;
+    border-bottom-right-radius: 400px;
+    border-top-right-radius: 400px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgb(33, 90, 56);
+    background: -moz-linear-gradient(
+      170deg,
+      rgba(33, 90, 56, 1) 32%,
+      rgba(138, 185, 114, 1) 45%,
+      rgba(33, 90, 56, 1) 58%
+    );
+    background: -webkit-linear-gradient(
+      170deg,
+      rgba(33, 90, 56, 1) 32%,
+      rgba(138, 185, 114, 1) 45%,
+      rgba(33, 90, 56, 1) 58%
+    );
+    background: linear-gradient(
+      170deg,
+      rgba(33, 90, 56, 1) 32%,
+      rgba(138, 185, 114, 1) 45%,
+      rgba(33, 90, 56, 1) 58%
+    );
+  }
+
+  #two {
+    width: 150px;
+    height: 300px;
+    border-bottom-right-radius: 200px;
+    border-top-right-radius: 200px;
+    background: rgba(70, 69, 69, 0.5);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  #three {
+    width: 120px;
+    height: 240px;
+    border-bottom-right-radius: 200px;
+    border-top-right-radius: 200px;
+    background: rgba(93, 93, 93, 0.3);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  #four {
+    position: relative;
+    left: -50px;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(255, 237, 202);
+    border-radius: 50%;
+    border: 10px solid rgb(223, 152, 0);
+    border-left: 0;
+    border-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #headphones-container {
+    width: 200px;
+    height: 400px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+
+  #headphones {
+    position: relative;
+    width: 200px;
+    height: 250px;
+    border-top-left-radius: 400px;
+    border: 30px solid rgb(32, 88, 55);
+    border-bottom: 0;
+    border-right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  #ears {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  #ear-one {
+    width: 40px;
+    height: 60px;
+    background-color: rgb(32, 88, 55);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    position: relative;
+  }
+
+  #ear-two {
+    width: 70px;
+    height: 160px;
+    background-color: rgb(32, 88, 55);
+    position: relative;
+    top: -50px;
+    margin: 0 3px;
+    border-radius: 50% 30px 30px 50%;
+  }
+
+  #mic {
+    width: 50%;
+    height: 85%;
+    background-color: rgb(32, 88, 55);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+  }
+
+  #mic-stand {
+    position: relative;
+    width: 50%;
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  #mic-one {
+    width: 10px;
+    height: 40px;
+    background-color: rgb(223, 152, 0);
+  }
+
+  #mic-two {
+    width: 30px;
+    height: 20px;
+    background-color: rgb(223, 152, 0);
+    border-radius: 5px 0 0 5px;
+  }
+
+  #lines {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .line {
+    width: 100%;
+    height: 5px;
+    margin: 2px;
+    background-color: rgb(255, 237, 202);
+  }
+
+  #equalizer {
+    position: relative;
+    width: 500px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #horizontal {
+    width: 100%;
+    border: 1px solid rgb(223, 152, 0);
+  }
+
+  #vertical-lines {
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+  }
+
+  .vertical {
+    width: 5px;
+    height: 100px;
+    border-radius: 5px;
+    background-color: rgb(223, 152, 0);
+    background-color: rgb(223, 152, 0);
+    animation-direction: alternate-reverse;
+    margin: 1px;
+  }
+
+  @keyframes equalizer {
+    from {
+      height: 80%;
+    }
+
+    to {
+      height: 5px;
+    }
+  }
