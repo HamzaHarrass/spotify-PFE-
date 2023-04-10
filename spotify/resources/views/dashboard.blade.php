@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>My Spotify</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
         <link rel="stylesheet" href="/style/style.css">
@@ -35,24 +35,13 @@
                                 <span class="ml-2 text-white">Home</span>
                             </a>
                         </li>
-
-                        <li class="pl-3 mb-2">
-                            <a class="d-flex align-items-center" href="#">
-                                <img src="/images/icons/search.svg" alt="Icon depicting a magnifying glass">
-                                <span class="ml-2">Search</span>
-                            </a>
-                        </li>
                     </ul>
                     <!-- /Sidebar options -->
 
                     <!-- Sidebar options  -->
                     <div class="d-none appear">
                         <a href="#" class="d-block mb-3">
-                            <img src="/img/home.svg" alt="Icon depicting a house">
-                        </a>
-
-                        <a href="#" class="d-block mb-3">
-                            <img src="/img/search.svg" alt="Icon depicting a magnifying glass">
+                            <img src="/images/icons/home.svg" alt="Icon depicting a house">
                         </a>
                     </div>
                     <!-- /Sidebar options -->
@@ -62,7 +51,7 @@
                 <!-- Profile  -->
                 <div id="profile" class="d-flex flex-column disappear">
                     <div id="user" class="d-flex align-items-center mt-3 mb-2 pl-3">
-                        <div class="user_img d-flex justify-content-center align-items-center bg-grey rounded-circle"></div>
+                        <div class="user_img d-flex justify-content-center align-items-center bg-success rounded-circle"></div>
                         <div id="profile_name" class="text-white ml-3">{{ Auth::user()->name }}</div>
                     </div>
                 </div>
@@ -71,21 +60,18 @@
 
             <!-- App content -->
             <main class="d-flex flex-column w-100 px-0 text-grey">
-                <div style="margin-right: 2%" id="upgrade_bar" class="d-flex justify-content-end align-items-center fixed-top mt-3">
+                <div  style="margin-right: 2%" id="upgrade_bar" class="d-flex justify-content-end  align-items-center fixed-top mt-3">
                     {{-- <a href="#" class="btn rounded-pill border border-white mr-5 px-5 bg-black text-white text-uppercase">Profile</a> --}}
-                    <div class="dropdown ">
+                    <div  class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->name }}
                         </button>
                         <div class="dropdown-menu">
-                          <a style="cursor: pointer" class="dropdown-item" :href="route('profile.edit')">Profil</a>
+                          <a style="cursor: pointer" class="dropdown-item" href="{{ route('profile.edit') }}">Profil</a>
                           <form method="POST" action="{{ route('logout') }}">
                             @csrf
                            <button class="dropdown-item" type="submit">Logout</button>
                           </form>
-
-
-
                         </div>
                       </div>
                 </div>

@@ -24,12 +24,16 @@
     align-items: center;
   }
   #login:hover {
-    background-color: #1db954;
+    background-color: green;
+    color: white;
+  }
+#dashbord:hover {
+    background-color: green;
     color: white;
   }
 
   #register:hover {
-    background-color: #1db954;
+    background-color: green;
     color: white;
   }
 

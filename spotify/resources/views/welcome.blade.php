@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>spotify</title>
-
+        <title>{{ config('app.name', 'Laravel') }}</title>
+        <link rel="shortcut icon" href="images/icons/spotify.png" type="image/x-icon">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"/>
@@ -18,7 +18,7 @@
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="">Dashboard</a>
+                        <a id="dashbord" class="btn text-white border rounded-lg" href="{{ url('/dashboard') }}" class="">Dashboard</a>
                     @else
                         <a id="login" href="{{ route('login') }}" class="btn rounded-pill border border-white mr-5 px-5 bg-black text-white text-uppercase">Log in</a>
 
