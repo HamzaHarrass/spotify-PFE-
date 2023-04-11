@@ -32,6 +32,8 @@ class CategoryController extends Controller
     {
         $category = new category(); //create new instance of category
         $category->name = $request->name;
+        $category->image = $request->file('image')->store('public/images');
+        $category->image = str_replace('public/', 'storage/', $category->image);
         $category->save();
         return redirect()->route('category');
         // $this->index();
@@ -58,13 +60,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, category $category)
     {
-        $request->validate([
-            'title' => 'required|max:10',
-        ]);
-        $category->title = $request->title;
-        $category->save();
-        // return redirect()->route('dashboard');
-       }
+        //
+    }
 
     /**
      * Remove the specified resource from storage.

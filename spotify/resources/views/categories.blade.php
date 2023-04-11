@@ -25,10 +25,12 @@
                                   <div class="col-md-6">
                                     <div class="card d-flex align-items-center justify-content-center bg-black text-white">
                                       <div class="card-body">
-                                        <form method="POST" action="{{route('category.store')}}">
+                                        <form method="POST" action="{{route('category.store')}}" enctype="multipart/form-data">
                                             @csrf
                                         <h5 class="">Categories Title</h5>
                                         <input class="px-4" type="text" name="name" id="">
+                                        <br>
+                                        <input class="mt-3" type="file" name="image" id="" accept="image/*">
                                         <br>
                                         <button id="category" class="mt-3 btn rounded-pill text-white border border-white mr-5 px-5" type="submit">add</button>
                                         </form>
@@ -40,8 +42,9 @@
                                       <thead>
                                         <tr>
                                           <th>id</th>
+                                          <th>image</th>
                                           <th>name</th>
-                                          <th class="pe-5">Update</th>
+                                          <th></th>
                                           <th class="pe-5">delete</th>
                                           <th></th>
                                         </tr>
@@ -50,9 +53,10 @@
                                         @foreach ($category as $item)
                                         <tr>
                                           <td>{{$item->id}}</td>
+                                          <th scope="row"><img src="{{ asset($item->image)}}" alt="" width="60" height="60" ></th>
                                           <td>{{$item->name}}</td>
-                                          <td><a  class="btn bg-success text-white" href="#">Modifier</a></td>
-                                          <td>  <form class="btn btn-danger btn-sm" action="{{route('category.destroy', $item->id)}}" method="post">
+                                          <td></td>
+                                          <td><form class="btn btn-danger btn-sm" action="{{route('category.destroy', $item->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>

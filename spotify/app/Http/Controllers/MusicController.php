@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\music;
+use App\Models\category;
 use Illuminate\Http\Request;
 
 class MusicController extends Controller
@@ -12,7 +13,10 @@ class MusicController extends Controller
      */
     public function index()
     {
-        //
+        $music = music::all();
+        $category = category::all();
+        return view('music', ['music' => $music,'category'=>$category]);
+
     }
 
     /**
@@ -28,7 +32,19 @@ class MusicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $music = new music(); //create new instance of music
+        $music->name = $request->name;
+        $image = $request->file('image')->store('public/images');
+        $music->image = str_replace('public/', 'storage/', $image);
+        $music->category_id = $request->category_id;
+        $music->user_id = $request->user()->id;
+        if ($request->hasFile('audio')) {
+            $audio = $request->file('audio')->store('public/audios');
+            $music->audio = str_replace('public/', 'storage/', $audio);
+        }
+        //dd($music,$request);
+        $music->save();
+        return redirect()->route('music');
     }
 
     /**
@@ -42,9 +58,10 @@ class MusicController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(music $music)
+    public function edit($id)
     {
-        //
+        $model = Model::find($id);
+
     }
 
     /**
@@ -58,8 +75,10 @@ class MusicController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(music $music)
+    public function destroy($id)
     {
-        //
+        $music = category::find($id);
+        $music->delete();
+        return redirect()->back();
     }
 }

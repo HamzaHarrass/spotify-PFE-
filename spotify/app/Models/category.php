@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class category extends Model
 {
     use HasFactory;
+
+    public function music()
+    {
+        return $this->hasMany(music::class);
+    }
 }

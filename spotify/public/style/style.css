@@ -63,7 +63,7 @@ a:hover {
 }
 /* hover button add category */
 
-.category:hover{
+#   category:hover{
     background-color: green;
 }
 

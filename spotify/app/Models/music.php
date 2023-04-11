@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class music extends Model
 {
     use HasFactory;
+
+    public function category()
+    {
+        return $this->belongsTo(category::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
 }
