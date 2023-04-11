@@ -61,7 +61,11 @@ a:hover {
     color: white;
     text-decoration: none;
 }
+/* hover button add category */
 
+.category:hover{
+    background-color: green;
+}
 
 /* Sidebar rules */
 
@@ -173,6 +177,18 @@ main {
     width: 40px;
     position: absolute;
     left: 180%;
+    transform: translate(-50%, 3px);
+}
+
+#categorie li:first-child a::after {
+    content:'';
+    display: block;
+    color: green;
+    background-color: #adf62f;
+    height: 2px;
+    width: 40px;
+    position: absolute;
+    left: 260%;
     transform: translate(-50%, 3px);
 }
 
