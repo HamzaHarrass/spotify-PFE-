@@ -9,6 +9,14 @@ class music extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'name',
+        'category_id',
+        'image',
+        'audio',
+        'user_id'
+    ];
+
     public function category()
     {
         return $this->belongsTo(category::class);
@@ -18,5 +26,5 @@ class music extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+
 }

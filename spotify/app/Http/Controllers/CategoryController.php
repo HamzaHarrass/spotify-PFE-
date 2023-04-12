@@ -60,7 +60,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:10',
+            'image' => 'required|image|mimes:jpg|max:2048',
+        ]);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('public/images');
+            $image_url = str_replace('public/', 'storage/', $image);
+        }
+        $category->update(['name'=>$request->name,'image'=>$image_url]);
+        return redirect()->route('category');
     }
 
     /**

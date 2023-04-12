@@ -34,23 +34,30 @@ Route::get('music', function () {
     return view('music');
 })->middleware(['auth', 'verified'])->name('music');
 
+Route::get('album', function () {
+    return view('album');
+})->middleware(['auth', 'verified'])->name('album');
+
+// route for profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//  Route::resource('user', category::class);
+//  route for category
 Route::get('/category', [CategoryController::class, 'index'])->name('category');
 Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+Route::put('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
-
+// route for music
 Route::get('/music', [MusicController::class, 'index'])->name('music');
 Route::post('/music', [MusicController::class, 'store'])->name('music.store');
-// Route::put('/music/{id}', [MusicController::class, 'edit'])->name('editMusic');
+Route::put('/music/{music}', [MusicController::class, 'update'])->name('music.update');
+Route::delete('/music/{id}', [MusicController::class, 'destroy'])->name('music.destroy');
 
-
+// route for album
 Route::get('/album', [AlbumController::class, 'index'])->name('album');
 Route::post('/album', [AlbumController::class, 'store'])->name('album.store');
 
