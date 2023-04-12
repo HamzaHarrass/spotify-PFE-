@@ -192,6 +192,20 @@ main {
     transform: translate(-50%, 3px);
 }
 
+#Album li:first-child a::after {
+    content:'';
+    display: block;
+    color: green;
+    background-color: #adf62f;
+    height: 2px;
+    width: 40px;
+    position: absolute;
+    left: 220%;
+    transform: translate(-50%, 3px);
+}
+
+
+
 .playlist_overlay {
     top: 0;
 }

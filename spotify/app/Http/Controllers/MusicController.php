@@ -58,11 +58,9 @@ class MusicController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
-    {
-        $model = Model::find($id);
-
-    }
+public function edit($id)
+{
+}
 
     /**
      * Update the specified resource in storage.

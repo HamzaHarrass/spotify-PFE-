@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MusicController;
 use App\Http\Controllers\ProfileController;
@@ -47,5 +48,10 @@ Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('c
 
 Route::get('/music', [MusicController::class, 'index'])->name('music');
 Route::post('/music', [MusicController::class, 'store'])->name('music.store');
+// Route::put('/music/{id}', [MusicController::class, 'edit'])->name('editMusic');
+
+
+Route::get('/album', [AlbumController::class, 'index'])->name('album');
+Route::post('/album', [AlbumController::class, 'store'])->name('album.store');
 
 require __DIR__.'/auth.php';
