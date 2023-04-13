@@ -63,14 +63,27 @@ class AlbumController extends Controller
      */
     public function update(Request $request, Album $album)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:10',
+            'category_id' => 'required',
+            'image' => 'required|image|mimes:jpg|max:2048',
+        ]);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image_path = $image->store('public/images');
+            $image_url = str_replace('public/', 'storage/', $image_path);
+        }
+        $album->update(['name'=>$request->name,'image'=>$image_url]);
+        return redirect()->route('album');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Album $album)
+    public function destroy( $id)
     {
-        //
+        $category = Album::find($id);
+        $category->delete();
+        return redirect()->back();
     }
 }

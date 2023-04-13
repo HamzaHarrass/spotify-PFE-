@@ -57,10 +57,51 @@
                         <tr>
                           <th scope="row"><img src="{{ asset($item->image)}}" alt="" width="60" height="60" ></th>
                           <td>{{ $item->name }}</td>
-                          <td>{{ $item->category}}</td>
-                          <td><a class="btn  bg-danger  text-white" href="#">delete</a></td>
-                          <td><a  class="btn bg-success text-white"  href="#" >Modifier</a></td>
+                          <td>{{ $item->category->name}}</td>
+                          <td><form class="" action="{{route('album.destroy', $item->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger ">Delete</button>
+                            </form>
+                          </td>
+                          <td><a  class="btn bg-success text-white" data-toggle="modal" data-target="#staticBackdrop{{$item->id}}" href="#" >Modifier</a></td>
                         </tr>
+                        {{-- model --}}
+                        <div class="modal fade " id="staticBackdrop{{$item->id}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog my-5 py-5">
+                              <div class="modal-content bg-black border border-success my-5">
+                                <div class="modal-header">
+                                  <h5 class="modal-title text-white" id="staticBackdropLabel">Update Music</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body d-flex">
+                                  <form method="POST" action="{{route('album.update',$item->id)}}" class="w-0" style="justify-content:start" enctype="multipart/form-data">
+                                      @csrf
+                                      @method('PUT')
+                                  <img id="image" src="{{asset($item->image)}}" class="col-6 me-auto d-flex" alt="" srcset="">
+                                  <div class=" col-6 d-flex flex-column w-75 px-2">
+                                    <p class="mt-2">album Title</p>
+                                    <input class="my-1 py-1 rounded-3" name="name" id="name" type="text" value="{{$item->name}}">
+                                    <p class="mt-2">Category</p>
+                                    <select name="category_id" id="">
+                                        @foreach ($category as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <p class="mt-1">Image</p>
+                                    <input class="mt-1" type="file" name="image"  accept="image/*">
+                                    <div class="mt-2">
+                                        <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         @endforeach
                       </tbody>
                     </table>
@@ -69,7 +110,7 @@
                   <div class="playlist col-6 col-md-3 col-lg-2 d-flex flex-column mb-3 px-2 mt-5">
                       <img class="img-fluid" src="{{ asset($item->image)}}" alt="">
                       <h2 class="mt-3 text-white text-center">{{$item->name}}</h2>
-                      <h2 class="mt-3 text-white text-center">{{$item->category}}</h2>
+                      <h2 class=" text-gray text-center">{{$item->category->name}}</h2>
                   </div>
                 @endforeach
                 </div>

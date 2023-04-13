@@ -20,6 +20,7 @@
                     <!-- <input class="w-25 r" type="text" name="" id=""> -->
                     <div class="playlist_row container-fluid d-flex my-4">
                         <div class="row w-100">
+                            
                             <div class="playlist col-6 col-md-3 col-lg-2 d-flex flex-column mb-3 px-2">
                                 <a class="position-relative" href="#">
                                     <img class="img-fluid" src="/images/7liwa.jpg" alt="">

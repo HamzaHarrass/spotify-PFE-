@@ -30,6 +30,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:10',
+            'image' => 'required|image|mimes:jpg|max:2048',
+        ]);
+
         $category = new category(); //create new instance of category
         $category->name = $request->name;
         $category->image = $request->file('image')->store('public/images');

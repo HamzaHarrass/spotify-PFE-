@@ -12,6 +12,7 @@ class music extends Model
     protected $fillable =[
         'name',
         'category_id',
+        'album_id',
         'image',
         'audio',
         'user_id'
@@ -25,6 +26,11 @@ class music extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function album()
+    {
+        return $this->belongsTo(album::class);
     }
 
 }

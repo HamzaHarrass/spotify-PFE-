@@ -43,6 +43,14 @@
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                           </select>
+
+                          <p class="mt-2">album</p>
+                          <select name="album_id">
+                              @foreach ($album as $item)
+                              <option value="{{$item->id}}">{{$item->name}}</option>
+                              @endforeach
+                          </select>
+
                           <p class="mt-2">Image</p>
                           <input class="mt-3" type="file" name="image"  accept="image/*">
                           <p class="mt-2">Music</p>
@@ -59,6 +67,7 @@
                           <th>Image</th>
                           <th>Title</th>
                           <th>Category</th>
+                          <th>Album</th>
                           <th class="" colspan="2">action</th>
                         </tr>
                       </thead>
@@ -68,6 +77,7 @@
                           <th scope="row"><img src="{{ asset($item->image)}}" alt="" width="60" height="60" ></th>
                           <td>{{ $item->name }}</td>
                           <td>{{ $item->category->name}}</td>
+                          <td>{{ $item->album->name}}</td>
                           <td><form class="" action="{{route('music.destroy', $item->id)}}" method="post">
                             @csrf
                             @method('DELETE')
@@ -100,6 +110,12 @@
                                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                                 @endforeach
                                         </select>
+                                    <p class="mt-2">album</p>
+                                    <select name="album_id">
+                                        @foreach ($album as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
+                                    </select>
                                     <p class="mt-1">Image</p>
                                     <input class="mt-1" type="file" name="image"  accept="image/*">
                                     <p class="mt-1">Music</p>

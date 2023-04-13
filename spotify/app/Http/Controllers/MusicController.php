@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\music;
 use App\Models\category;
+use App\Models\album;
 use Illuminate\Http\Request;
 use Termwind\Components\Dd;
 
@@ -16,7 +17,22 @@ class MusicController extends Controller
     {
         $music = music::all();
         $category = category::all();
-        return view('music', ['music' => $music,'category'=>$category]);
+        $album = album::all();
+        // dd($music,$category,$album);
+        return view('music', ['music' => $music,'category'=>$category , 'album'=>$album]);
+
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function dashboard_artist()
+    {
+        $music = music::all();
+        $category = category::all();
+        $album = album::all();
+        return view('dashboardArtist', ['music' => $music,'category'=>$category , 'album'=>$album]);
 
     }
 
@@ -34,10 +50,10 @@ class MusicController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:10',
+            'name' => 'required|max:50',
             'category_id' => 'required',
-            'user_id' => 'required',
-            'audio' => 'required|audio|mimes:mp3|max:5000',
+            'album_id' => 'required',
+            'audio' => 'required|mimetypes:audio/mpeg|max:5000',
             'image' => 'required|image|mimes:jpg|max:2048',
         ]);
 
@@ -46,6 +62,7 @@ class MusicController extends Controller
         $image = $request->file('image')->store('public/images');
         $music->image = str_replace('public/', 'storage/', $image);
         $music->category_id = $request->category_id;
+        $music->album_id = $request->album_id;
         $music->user_id = $request->user()->id;
         if ($request->hasFile('audio')) {
             $audio = $request->file('audio')->store('public/audios');
@@ -79,8 +96,7 @@ public function edit($id)
         $request->validate([
             'name' => 'required|max:10',
             'category_id' => 'required',
-            'user_id' => 'required',
-            'audio' => 'required|audio|mimes:mp3|max:5000',
+            'audio' => 'required|mimetypes:audio/mpeg|max:5000',
             'image' => 'required|image|mimes:jpg|max:2048',
         ]);
         if ($request->hasFile('image')) {

@@ -6,6 +6,7 @@ use App\Http\Controllers\MusicController;
 use App\Http\Controllers\ProfileController;
 use App\Models\category;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\Framework\Attributes\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,20 +46,34 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//  route for category
-Route::get('/category', [CategoryController::class, 'index'])->name('category');
-Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
-Route::put('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
-Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    //  route for category
+Route::group([
+    'middleware' => 'isAdmin'
+],function(){
+    Route::get('/category', [CategoryController::class, 'index'])->name('category');
+    Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+    Route::put('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+});
+
 
 // route for music
-Route::get('/music', [MusicController::class, 'index'])->name('music');
-Route::post('/music', [MusicController::class, 'store'])->name('music.store');
-Route::put('/music/{music}', [MusicController::class, 'update'])->name('music.update');
-Route::delete('/music/{id}', [MusicController::class, 'destroy'])->name('music.destroy');
 
-// route for album
-Route::get('/album', [AlbumController::class, 'index'])->name('album');
-Route::post('/album', [AlbumController::class, 'store'])->name('album.store');
+ Route::group([
+        'middleware' => 'isArtist'
+ ],function(){
+     Route::get('/music', [MusicController::class, 'index'])->name('music');
+     Route::get('/dashboard_artist', [MusicController::class, 'dashboard_artist'])->name('music');
+     Route::post('/music', [MusicController::class, 'store'])->name('music.store');
+     Route::put('/music/{music}', [MusicController::class, 'update'])->name('music.update');
+     Route::delete('/music/{id}', [MusicController::class, 'destroy'])->name('music.destroy');
+
+     // route for album
+     Route::get('/album', [AlbumController::class, 'index'])->name('album');
+     Route::get('/dashboard_artist', [MusicController::class, 'dashboard_artist'])->name('album');
+     Route::post('/album', [AlbumController::class, 'store'])->name('album.store');
+     Route::put('/album/{album}', [AlbumController::class, 'update'])->name('album.update');
+     Route::delete('/album/{id}', [AlbumController::class, 'destroy'])->name('album.destroy');
+ });
 
 require __DIR__.'/auth.php';

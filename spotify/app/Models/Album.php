@@ -13,7 +13,6 @@ class Album extends Model
         'name',
         'category_id',
         'image',
-        'user_id'
     ];
 
     public function category()
