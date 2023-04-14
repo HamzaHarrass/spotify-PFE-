@@ -1,12 +1,15 @@
 <?php
 
-use App\Http\Controllers\AlbumController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\MusicController;
-use App\Http\Controllers\ProfileController;
+use App\Models\music;
 use App\Models\category;
+use App\Models\album;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\MusicController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +27,22 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $id = Auth::user()->id;
+    $music = music::with('user')->get();
+    $category = category::all();
+    $album = album::all();
+    return view('dashboard', ['music' => $music,'category'=>$category , 'album'=>$album]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::get('/music_play', function () {
+    $id = Auth::user()->id;
+    $music = music::with('user')->get();
+    $category = category::all();
+    $album = album::all();
+    return view('music_play', ['music' => $music,'category'=>$category , 'album'=>$album]);
+})->middleware(['auth', 'verified'])->name('music_play');
+
 
 Route::get('/categories', function () {
     return view('categories');

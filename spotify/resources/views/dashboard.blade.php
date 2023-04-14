@@ -23,16 +23,16 @@
                             @foreach ($music as $item)
                             <div class="playlist col-6 col-md-3 col-lg-2 d-flex flex-column mb-3 px-2">
                                 <a class="position-relative" href="#">
-                                    <img class="img-fluid" src="/images/7liwa.jpg" alt="">
+                                    <img class="img-fluid" src="{{asset($item->image)}}" alt="">
                                     <div class="playlist_overlay position-absolute d-none w-100 h-100 bg-fading-black">
                                         <i class="position-absolute far fa-play-circle"></i>
                                     </div>
                                 </a>
                                 <a href="#">
-                                    <h2 class="mt-3 text-white text-center">7liwa</h2>
+                                    <h2 class="mt-3 text-white text-center">{{$item->name}}</h2>
                                 </a>
                                 <a href="#" class="text-center">
-                                    <span id="heavymetal">Artist</span>
+                                    <span id="heavymetal">{{$item->user->name}}</span>
                                 </a>
                             </div>
                             @endforeach
