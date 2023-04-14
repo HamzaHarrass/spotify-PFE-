@@ -101,6 +101,7 @@ public function edit($id)
         $request->validate([
             'name' => 'required|max:10',
             'category_id' => 'required',
+            'album_id' => 'required',
             'audio' => 'required|mimetypes:audio/mpeg|max:10000',
             'image' => 'required|image|mimes:jpg|max:2048',
         ]);
@@ -112,7 +113,15 @@ public function edit($id)
             $audio = $request->file('audio')->store('public/audios');
             $audio_url = str_replace('public/', 'storage/', $audio);
         }
-        $music->update(['name'=>$request->name,'category_id'=>$request->category_id,'image'=>$image_url,'audio'=>$audio_url]);
+
+        $music->update([
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'album_id' => $request->album_id,
+            'image' => $image_url,
+            'audio' => $audio_url,
+        ]);
+
         return redirect()->route('music');
     }
 

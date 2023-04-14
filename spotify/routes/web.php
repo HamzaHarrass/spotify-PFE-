@@ -3,6 +3,7 @@
 use App\Models\music;
 use App\Models\category;
 use App\Models\album;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
@@ -28,10 +29,11 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     $id = Auth::user()->id;
+    $user = User::where('role_id', '3')->get();
     $music = music::with('user')->get();
     $category = category::all();
     $album = album::all();
-    return view('dashboard', ['music' => $music,'category'=>$category , 'album'=>$album]);
+    return view('dashboard', ['music' => $music,'category'=>$category , 'album'=>$album , 'user'=>$user]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
