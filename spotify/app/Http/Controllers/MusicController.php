@@ -68,7 +68,9 @@ class MusicController extends Controller
         $music->album_id = $request->album_id;
         $music->user_id = $request->user()->id;
         if ($request->hasFile('audio')) {
-            $audio = $request->file('audio')->store('public/audios');
+            $audio = $request->file('audio');
+            $size_mb = $audio->getSize()/(1024*1000);
+            $audio_url = $audio->store('public/audios');
             $music->audio = str_replace('public/', 'storage/', $audio);
         }
         //dd($music,$request);

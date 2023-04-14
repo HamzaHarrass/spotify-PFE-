@@ -24,14 +24,14 @@
                     <!-- /Logo -->
 
                     <a class="d-none appear mb-4" href="/">
-                        <img src="/img/logo-small.svg" alt="Small Spotify logo">
+                        <img width="25" class="mt-2" src="{{asset('images/icons/spotify.png')}}" alt="Small Spotify logo">
                     </a>
 
                     <!-- Sidebar options -->
                     <ul id="sidebar_options" class="px-0 disappear">
                         <li class="position-relative pl-3 mb-2">
                             <a class="d-flex align-items-center" href="#">
-                                <img id="home" src="/images/icons/home.svg" alt="Icon depicting a house">
+                                <img id="home" src="{{asset('images/icons/home.svg')}}" alt="Icon depicting a house">
                                 <span class="ml-2 text-white">Home</span>
                             </a>
                         </li>
@@ -39,11 +39,11 @@
                     <!--  -->
                     <div class="navigation__list mt-5 ">
 
-                        <div class="navigation__list__header " role="button" data-toggle="collapse" href="#yourMusic"  aria-controls="yourMusic">
+                        <div class="navigation__list__header ml-3 " role="button" data-toggle="collapse" href="#yourMusic"  aria-controls="yourMusic">
                           Your Music
                         </div>
 
-                        <div class="collapse in" id="yourMusic">
+                        <div class="" id="yourMusic">
 
                           <a href="#" class="navigation__list__item">
                             <i class="ion-headphone"></i>
@@ -78,8 +78,11 @@
                 <!-- Profile  -->
                 <div id="profile" class="d-flex flex-column disappear">
                     <div id="user" class="d-flex align-items-center mt-3 mb-2 pl-3">
-                        <div class="user_img d-flex justify-content-center align-items-center bg-success rounded-circle"></div>
-                        <div id="profile_name" class="text-white ml-3">{{ Auth::user()->name }}</div>
+                        <div class="user_img mb-3 ">
+                            <img width="30" height="30"  src="{{Auth::user()->image}}" alt="image" class="rounded-circle ">
+                        </div>
+
+                        <div id="profile_name" class="text-white ml-4">{{ Auth::user()->name }}</div>
                     </div>
                 </div>
                 <!-- /Profile  -->
@@ -88,7 +91,6 @@
             <!-- App content -->
             <main class="d-flex flex-column w-100 px-0 text-grey">
                 <div  style="margin-right: 2%" id="upgrade_bar" class="d-flex justify-content-end  align-items-center fixed-top mt-3">
-                    {{-- <a href="#" class="btn rounded-pill border border-white mr-5 px-5 bg-black text-white text-uppercase">Profile</a> --}}
                     <div  class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->name }}
