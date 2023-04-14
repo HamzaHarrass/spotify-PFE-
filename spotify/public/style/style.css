@@ -311,3 +311,33 @@ main {
         width: 20vw;
     }
 }
+
+.navigation__list {
+    display: flex;
+    flex-flow: column wrap;
+    margin-bottom: 15px;
+}
+.navigation__list__header:after {
+    font-family: "Ionicons";
+    content: "\f123";
+}
+.navigation__list .active:after {
+    font-family: "Ionicons";
+    content: "\f126";
+}
+.navigation__list__item {
+    color: #aaa;
+    padding: 5px 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+.navigation__list__item:hover {
+    color: #fff;
+    text-decoration: none;
+    border-right: 3px solid #1ed760;
+}
+.navigation__list__item i {
+    width: 25px;
+    display: block;
+}

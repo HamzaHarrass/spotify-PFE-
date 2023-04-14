@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\album;
 use App\Models\music;
 use App\Models\category;
-use App\Models\album;
-use Illuminate\Http\Request;
 use Termwind\Components\Dd;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MusicController extends Controller
 {
@@ -15,7 +16,8 @@ class MusicController extends Controller
      */
     public function index()
     {
-        $music = music::all();
+        $id = Auth::user()->id;
+        $music = music::where("user_id", "=", Auth::user()->id)->where("user_id", "=", $id)->get();
         $category = category::all();
         $album = album::all();
         // dd($music,$category,$album);
@@ -29,9 +31,10 @@ class MusicController extends Controller
      */
     public function dashboard_artist()
     {
-        $music = music::all();
+        $id = Auth::user()->id;
+        $music = music::skip(0)->take(5)->where("user_id", "=", $id)->get();
         $category = category::all();
-        $album = album::all();
+        $album = album::skip(0)->take(5)->where("user_id", "=", $id)->get();
         return view('dashboardArtist', ['music' => $music,'category'=>$category , 'album'=>$album]);
 
     }
@@ -52,8 +55,8 @@ class MusicController extends Controller
         $request->validate([
             'name' => 'required|max:50',
             'category_id' => 'required',
-            'album_id' => 'required',
-            'audio' => 'required|mimetypes:audio/mpeg|max:5000',
+            // 'album_id' => 'required',
+            'audio' => 'required|mimetypes:audio/mpeg|max:10000',
             'image' => 'required|image|mimes:jpg|max:2048',
         ]);
 
@@ -96,7 +99,7 @@ public function edit($id)
         $request->validate([
             'name' => 'required|max:10',
             'category_id' => 'required',
-            'audio' => 'required|mimetypes:audio/mpeg|max:5000',
+            'audio' => 'required|mimetypes:audio/mpeg|max:10000',
             'image' => 'required|image|mimes:jpg|max:2048',
         ]);
         if ($request->hasFile('image')) {

@@ -46,6 +46,7 @@
 
                           <p class="mt-2">album</p>
                           <select name="album_id">
+                            <option value="">NUll</option>
                               @foreach ($album as $item)
                               <option value="{{$item->id}}">{{$item->name}}</option>
                               @endforeach
@@ -60,8 +61,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-8 ">
-                    <table class="table text-white">
+                  <div class="col-md-8" style="height: 40vh;overflow:scroll;">
+                    <table class="table text-white" >
                       <thead>
                         <tr>
                           <th>Image</th>
@@ -77,7 +78,7 @@
                           <th scope="row"><img src="{{ asset($item->image)}}" alt="" width="60" height="60" ></th>
                           <td>{{ $item->name }}</td>
                           <td>{{ $item->category->name}}</td>
-                          <td>{{ $item->album->name}}</td>
+                          <td>{{ $item->album->name ?? 'null'}}</td>
                           <td><form class="" action="{{route('music.destroy', $item->id)}}" method="post">
                             @csrf
                             @method('DELETE')
@@ -112,6 +113,7 @@
                                         </select>
                                     <p class="mt-2">album</p>
                                     <select name="album_id">
+                                        <option value="">NUll</option>
                                         @foreach ($album as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                         @endforeach

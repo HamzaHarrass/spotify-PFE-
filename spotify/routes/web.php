@@ -63,6 +63,7 @@ Route::group([
         'middleware' => 'isArtist'
  ],function(){
      Route::get('/music', [MusicController::class, 'index'])->name('music');
+    //  Route::get('/Music', [MusicController::class, 'index'])->name('music');
      Route::get('/dashboard_artist', [MusicController::class, 'dashboard_artist'])->name('music');
      Route::post('/music', [MusicController::class, 'store'])->name('music.store');
      Route::put('/music/{music}', [MusicController::class, 'update'])->name('music.update');
