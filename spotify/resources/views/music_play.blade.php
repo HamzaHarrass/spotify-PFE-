@@ -33,7 +33,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-10 sf-playlist">
+        <div class="col-8 sf-playlist">
             <div class="row">
                 <div class="col-2">
                     <img src="" class="img-fluid"/>
@@ -41,10 +41,7 @@
                 <div class="col-10">
                     <h2 class="title"></h2>
                     <button class="btn btn-dark sf-btn-default">
-                        <span class="fa fa-heart-o"></span>
-                    </button>
-                    <button class="btn btn-dark sf-btn-default">
-                        <span class="fa fa-ellipsis-h"></span>
+                        <span class="bi bi-heart"></span>
                     </button>
                 </div>
             </div>
@@ -53,7 +50,7 @@
             <div class="row">
                 <div class="col-12">
                     <div style="height: 300px; overflow: auto  ">
-                        <table style=" background-color: #272727 "  class="table text-white">
+                        <table  class="table text-white">
                             <thead >
                                 <th>#</th>
                                 <th>image</th>
@@ -90,10 +87,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-2 sf-gray-primary">
-            <div style="text-align: center; margin-top: 100%">
-                <h5 class="title">Veja o que seus amigos estão ouvindo</h5><br/>
-                <button class="btn btn-dark sf-btn-default">ENCONTRAR AMIGOS</button>
+        <div class="col-2 ">
+            <div style="text-align: center ;    margin-left:50px ;">
+                <img src="{{asset('images/pexels-cottonbro-studio-5077404.jpg')}}" width="300" alt="" srcset="">
             </div>
         </div>
     </div>

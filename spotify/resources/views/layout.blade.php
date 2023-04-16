@@ -10,10 +10,12 @@
         <link rel="stylesheet" href="/style/style.css">
         <link rel="shortcut icon" href="images/icons/spotify.png" type="image/x-icon">
     </head>
-    <body class="overflow-hidden bg-black">
+    <body class="overflow-hidden" style="background: rgb(0,0,0);
+background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,113,15,1) 100%);">
         <div class="container-fluid d-flex px-0">
             <!-- Left sidebar -->
-            <nav id="sidebar" class="d-flex justify-content-between flex-column fixed-left flex-shrink-0 px-0 text-grey bg-black">
+            <nav id="sidebar" class="d-flex justify-content-between flex-column fixed-left flex-shrink-0 px-0 text-grey" style="background: rgb(0,0,0);
+            background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(1,94,14,1) 100%);">
                 <div class="wrapper">
                     <!-- Logo -->
                     <a href="home.html" id="logo" class="d-flex align-items-center py-3 pl-3 disappear">
