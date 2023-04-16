@@ -53,7 +53,7 @@ Route::get('/song', function () {
     $music = music::where("user_id", "=", $id)->get();
     $category = category::all();
     return view('song', ['music' => $music,'category'=>$category ]);
-})->middleware(['auth', 'verified', 'isArtist'])->name('song');
+})->middleware(['auth', 'verified', 'isUser'])->name('song');
 
 
 Route::get('/categories', function () {

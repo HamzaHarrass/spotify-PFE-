@@ -33,7 +33,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-8 sf-playlist">
+        <div class=" ml-5 col-10 sf-playlist">
             <div class="row">
                 <div class="col-2">
                     <img src="" class="img-fluid"/>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <br/>
-
+            
             <div class="row">
                 <div class="col-12">
                     <div style="height: 300px; overflow: auto  ">
@@ -85,11 +85,6 @@
                         </table>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-2 ">
-            <div style="text-align: center ;    margin-left:50px ;">
-                <img src="{{asset('images/pexels-cottonbro-studio-5077404.jpg')}}" width="300" alt="" srcset="">
             </div>
         </div>
     </div>

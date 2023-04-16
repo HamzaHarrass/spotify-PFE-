@@ -1,5 +1,37 @@
   @extends('layout')
 
+
+  @section('sidebar')
+
+  <div class="navigation__list mt-5 ">
+
+      <div class="navigation__list__header ml-3 " role="button" data-toggle="collapse" href="#yourMusic"  aria-controls="yourMusic">
+        Your Music
+      </div>
+
+      <div class="" id="yourMusic">
+
+        <a href="#" class="navigation__list__item">
+          <i class="ion-headphone"></i>
+          <span>Songs</span>
+        </a>
+
+        <a href="#" class="navigation__list__item">
+          <i class="ion-ios-musical-notes"></i>
+          <span>Albums</span>
+        </a>
+
+        <a href="#" class="navigation__list__item">
+          <i class="ion-person"></i>
+          <span>Artists</span>
+        </a>
+
+      </div>
+
+    </div>
+  @endsection
+
+
   @section('content')
                 <!-- categories -->
                 <ul id="filters" class="d-flex justify-content-center flex-wrap px-2 pt-4 mb-0 text-uppercase">
@@ -22,7 +54,7 @@
                         <div class="row w-100">
                             @foreach ($user as $item)
                             <div class="playlist col-6 col-md-3 col-lg-2 d-flex flex-column mb-3 px-2">
-                                <a class="position-relative" href="#">
+                                <a class="position-relative" href="{{route('music_play',$item->id)}}">
                                     <img class="img-fluid" src="{{asset($item->image)}}" alt="">
                                     <div class="playlist_overlay position-absolute d-none w-100 h-100 bg-fading-black">
                                         <i class="position-absolute far fa-play-circle"></i>
