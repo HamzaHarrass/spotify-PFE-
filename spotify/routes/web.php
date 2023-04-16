@@ -37,13 +37,23 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::get('/music_play', function () {
-    $id = Auth::user()->id;
-    $music = music::with('user')->get();
+Route::get('/music_play/{id}', function ($artist_id) {
+    $id = Auth::user();
+    $artist = User::where('id', $artist_id)->get();
+    $music = music::where('user_id', $artist_id)->get();
+    // dd($music);
     $category = category::all();
     $album = album::all();
-    return view('music_play', ['music' => $music,'category'=>$category , 'album'=>$album]);
+    return view('music_play', ['music' => $music,'category'=>$category , 'album'=>$album , 'artist'=>$artist]);
 })->middleware(['auth', 'verified'])->name('music_play');
+
+
+Route::get('/song', function () {
+    $id = Auth::user()->id;
+    $music = music::where("user_id", "=", $id)->get();
+    $category = category::all();
+    return view('song', ['music' => $music,'category'=>$category ]);
+})->middleware(['auth', 'verified', 'isArtist'])->name('song');
 
 
 Route::get('/categories', function () {

@@ -37,32 +37,7 @@
                         </li>
                     </ul>
                     <!--  -->
-                    <div class="navigation__list mt-5 ">
-
-                        <div class="navigation__list__header ml-3 " role="button" data-toggle="collapse" href="#yourMusic"  aria-controls="yourMusic">
-                          Your Music
-                        </div>
-
-                        <div class="" id="yourMusic">
-
-                          <a href="#" class="navigation__list__item">
-                            <i class="ion-headphone"></i>
-                            <span>Songs</span>
-                          </a>
-
-                          <a href="#" class="navigation__list__item">
-                            <i class="ion-ios-musical-notes"></i>
-                            <span>Albums</span>
-                          </a>
-
-                          <a href="#" class="navigation__list__item">
-                            <i class="ion-person"></i>
-                            <span>Artists</span>
-                          </a>
-
-                        </div>
-
-                      </div>
+                        @yield('sidebar')
                       <!-- / -->
 
                     <!-- Sidebar options  -->

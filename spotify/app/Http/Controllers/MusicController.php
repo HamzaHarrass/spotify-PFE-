@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use FFMpeg\FFProbe;
 use App\Models\album;
 use App\Models\music;
 use App\Models\category;
@@ -56,7 +57,7 @@ class MusicController extends Controller
             'name' => 'required|max:50',
             'category_id' => 'required',
             // 'album_id' => 'required',
-            'audio' => 'required|mimetypes:audio/mpeg|max:10000',
+            'audio' => 'required|mimetypes:audio/mpeg|max:20000',
             'image' => 'required|image|mimes:jpg|max:2048',
         ]);
 
@@ -68,9 +69,7 @@ class MusicController extends Controller
         $music->album_id = $request->album_id;
         $music->user_id = $request->user()->id;
         if ($request->hasFile('audio')) {
-            $audio = $request->file('audio');
-            $size_mb = $audio->getSize()/(1024*1000);
-            $audio_url = $audio->store('public/audios');
+            $audio = $request->file('audio')->store('public/audios');
             $music->audio = str_replace('public/', 'storage/', $audio);
         }
         //dd($music,$request);
@@ -99,10 +98,9 @@ public function edit($id)
     public function update(Request $request, music $music)
     {
         $request->validate([
-            'name' => 'required|max:10',
+            'name' => 'required',
             'category_id' => 'required',
-            'album_id' => 'required',
-            'audio' => 'required|mimetypes:audio/mpeg|max:10000',
+            'audio' => 'required|mimetypes:audio/mpeg|max:20000',
             'image' => 'required|image|mimes:jpg|max:2048',
         ]);
         if ($request->hasFile('image')) {
