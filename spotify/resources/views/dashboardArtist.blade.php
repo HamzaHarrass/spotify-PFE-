@@ -9,12 +9,12 @@
 
     <div class="" id="yourMusic">
 
-      <a href="{{route('song')}}" class="navigation__list__item">
+      <a href="{{route('music')}}" class="navigation__list__item">
         <i class="ion-headphone"></i>
         <span>Songs</span>
       </a>
 
-      <a href="#" class="navigation__list__item">
+      <a href="" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
         <span>Albums</span>
       </a>

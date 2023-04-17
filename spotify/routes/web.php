@@ -27,6 +27,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+//route for dashboard
+
 Route::get('/dashboard', function () {
     $id = Auth::user()->id;
     $user = User::where('role_id', '3')->get();
@@ -34,39 +37,54 @@ Route::get('/dashboard', function () {
     $category = category::all();
     $album = album::all();
     return view('dashboard', ['music' => $music,'category'=>$category , 'album'=>$album , 'user'=>$user]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'isUser'])->name('dashboard');
 
+//route for allAlbums
+
+Route::get('/allAlbums', function () {
+    $id = Auth::user()->id;
+    $user = User::where('role_id', '3')->get();
+    $music = music::with('user')->get();
+    $category = category::all();
+    $album = album::all();
+    return view('allAlbums', ['music' => $music,'category'=>$category , 'album'=>$album , 'user'=>$user]);
+})->middleware(['auth', 'verified', 'isUser'])->name('allAlbums');
+
+// route for music_play
 
 Route::get('/music_play/{id}', function ($artist_id) {
     $id = Auth::user();
-    $artist = User::where('id', $artist_id)->get();
+    $artist = User::where('id', $artist_id)->first();
     $music = music::where('user_id', $artist_id)->get();
     // dd($music);
     $category = category::all();
     $album = album::all();
+    // dd($artist);
     return view('music_play', ['music' => $music,'category'=>$category , 'album'=>$album , 'artist'=>$artist]);
-})->middleware(['auth', 'verified'])->name('music_play');
+})->middleware(['auth', 'verified', 'isUser'])->name('music_play');
 
+//route for song
 
 Route::get('/song', function () {
     $id = Auth::user()->id;
     $music = music::where("user_id", "=", $id)->get();
     $category = category::all();
     return view('song', ['music' => $music,'category'=>$category ]);
-})->middleware(['auth', 'verified', 'isUser'])->name('song');
+})->middleware(['auth', 'verified', 'isArtist'])->name('song');
 
+// route for category
 
 Route::get('/categories', function () {
     return view('categories');
-})->middleware(['auth', 'verified'])->name('categories');
+})->middleware(['auth', 'verified', 'isAdmin'])->name('categories');
+
+ // route for music
 
 Route::get('music', function () {
     return view('music');
-})->middleware(['auth', 'verified'])->name('music');
+})->middleware(['auth', 'verified', 'isArtist'])->name('music');
 
-Route::get('album', function () {
-    return view('album');
-})->middleware(['auth', 'verified'])->name('album');
+
 
 // route for profile
 Route::middleware('auth')->group(function () {

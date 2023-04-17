@@ -36,17 +36,15 @@
         <div class=" ml-5 col-10 sf-playlist">
             <div class="row">
                 <div class="col-2">
-                    <img src="" class="img-fluid"/>
+                    <img src="{{asset($artist->image)}}"  class="img-fluid border rounded"/>
                 </div>
-                <div class="col-10">
-                    <h2 class="title"></h2>
-                    <button class="btn btn-dark sf-btn-default">
-                        <span class="bi bi-heart"></span>
-                    </button>
+                <div class="col-10 d-flex align-items-end text-white">
+                    <h2 class="title">{{$artist->name}}</h2>
+                    <h2>{{}}</h2>
                 </div>
             </div>
             <br/>
-            
+
             <div class="row">
                 <div class="col-12">
                     <div style="height: 300px; overflow: auto  ">

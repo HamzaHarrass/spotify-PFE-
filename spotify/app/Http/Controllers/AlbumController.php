@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Album;
 use App\Models\category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AlbumController extends Controller
 {
@@ -13,7 +14,10 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        $album = Album::all();
+        $id = Auth::user()->id;
+        // dd($id);
+        $album = album::where("user_id", "=", $id)->get();
+        // $album = Album::all();
         $category = category::all();
         return view('album', ['album' => $album,'category'=>$category]);
     }
