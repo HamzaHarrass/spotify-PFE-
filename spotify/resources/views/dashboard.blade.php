@@ -33,6 +33,16 @@
 
 
   @section('content')
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
         <form method="POST" action="{{route('demande.store')}}" class="ml-5">
             @csrf
             <button class=" btn text-success bg-white ml-5">

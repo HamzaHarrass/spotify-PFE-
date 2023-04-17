@@ -53,29 +53,33 @@
                                 <th>image</th>
                                 <th>Name</th>
                                 <th></th>
+                                <th></th>
                                 <th>
                                     <span class="fa fa-thumbs-up"></span>
                                 </th>
                             </thead>
                             <tbody>
-                                @foreach ($music as $item)
-                                <tr>
+                          @foreach ($music as $item)
+                                <tr id="song-{{$item->id}}">
                                     <td>{{$item->id}}</td>
                                     <td>
-                                        <img src="{{asset($item->image)}}" width="30" height="30" class="rounded "/>
-                                        <a href="" class="ml-4">
-                                            <i class="bi bi-heart"></i>
-                                        </a>
+                                    <img src="{{asset($item->image)}}" width="30" height="30" class="rounded "/>
+                                    <a href="" class="ml-4">
+                                        <i class="bi bi-heart"></i>
+                                    </a>
                                     </td>
-                                    <td>{{$item->name}}</td>
+                                    <td class="song-name">{{$item->name}}</td>
+                                    <td class="artist">{{$item->artist}}</td>
                                     <td>
-                                        <audio id="audio-{{$item->id}}" >
-                                            <source src="{{asset($item->audio)}}" type="audio/mpeg">
-                                        </audio>
+                                    <audio id="audio-{{$item->id}}">
+                                        <source src="{{asset($item->audio)}}" type="audio/mpeg">
+                                    </audio>
                                     </td>
-                                    <td><a href="#" class="play-button" data-id="{{$item->id}}" onclick="playMusic({{$item->id}})">
+                                    <td>
+                                    <a href="#" class="play-button" data-id="{{$item->id}}" onclick="playMusic({{$item->id}})">
                                         <i class="bi bi-play-circle-fill color-success icon-music"></i>
-                                      </a></td>
+                                    </a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -93,19 +97,44 @@
 <script>
     let currentAudioElement = null;
 
-function playMusic(id) {
-    var audio = document.querySelector(`#audio-${id}`);
-    const audioElement = document.querySelector(`#audio-${id}`);
+    function playMusic(id) {
+  var audio = document.querySelector(`#audio-${id}`);
+  const audioElement = document.querySelector(`#audio-${id}`);
+  const songInfo = document.querySelector('#song_info');
 
-    if (audioElement) {
+  if (audioElement) {
     if (currentAudioElement) {
       currentAudioElement.pause();
     }
 
     audioElement.play();
     currentAudioElement = audioElement;
+
+    // Get the image and name of the current song
+    const image = document.querySelector(`#song-${id} img`).src;
+    const name = document.querySelector(`#song-${id} .song-name`).textContent;
+    const artist = document.querySelector(`#song-${id} .artist`).textContent;
+
+    // Update the song info section
+    songInfo.querySelector('img').src = image;
+    songInfo.querySelector('#current_song').textContent = name;
+    songInfo.querySelector('.disappear').classList.remove('disappear');
   }
+
+  // Get the media icons
+    const playIcon = document.querySelector('#media_icons .fa-play-circle');
+
+
+        playIcon.addEventListener('click', function() {
+        if (currentAudioElement.paused) {
+            currentAudioElement.play();
+            playIcon.classList.remove('fa-play-circle');
+            playIcon.classList.add('fa-pause-circle');
+        } else {
+            currentAudioElement.pause();
+            playIcon.classList.remove('fa-pause-circle');
+            playIcon.classList.add('fa-play-circle');
+        }
+        });
 }
-
-
 </script>

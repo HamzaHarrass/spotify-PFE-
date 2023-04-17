@@ -3,6 +3,7 @@
 use App\Models\User;
 use App\Models\album;
 use App\Models\music;
+use App\Models\demande;
 use App\Models\category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -149,8 +150,25 @@ Route::group([
         $music = music::with('user')->get();
         $category = category::all();
         $album = album::all();
-        return view('dashboardAdmin', ['music' => $music,'category'=>$category , 'album'=>$album , 'user'=>$user]);
+        // statistics
+        $artistCount = User::where('role_id', '3')->count();
+        $userCount = User::where('role_id', '2')->count();
+        $albumCount = Album::count();
+        $stats = [
+            'artistCount' => $artistCount,
+            'userCount' => $userCount,
+            'albumCount' => $albumCount,
+        ];
+        // dd($stats);
+        return view('dashboardAdmin', ['music' => $music,'category'=>$category , 'album'=>$album , 'user'=>$user, 'stats' => $stats]);
     })->middleware(['auth', 'verified', 'isAdmin'])->name('dashboardAdmin');
 
 
+    // route for accepter demande
+    Route::post('/acceptdemande/{demande}', [DemandeController::class, 'update'])->name('acceptdemande.update');
+
+    Route::get('/acceptdemande',function(){
+        $demande = Demande::all();
+                return view('acceptdemande', ['demande' => $demande]);
+    })->middleware(['auth', 'verified', 'isAdmin'])->name('acceptdemande');
 require __DIR__.'/auth.php';

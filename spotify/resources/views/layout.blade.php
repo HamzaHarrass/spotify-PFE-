@@ -115,12 +115,12 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,113,15,1) 100%);">
                         <i class="fas fa-undo"></i>
                     </div>
                     <div id="media_bar" class="d-flex align-items-center">
-                        <span class="font-weight-normal">0:25</span>
+                        <span class="font-weight-normal">0:00</span>
                         <div id="progress_bar" class="mx-4 rounded-pill">
                             <div class="slider position-relative w-25 h-100 rounded-pill">
-                                <div class="slider_handle position-absolute d-none rounded-circle"></div>
+                              <div class="slider_handle position-absolute d-none rounded-circle"></div>
                             </div>
-                        </div>
+                          </div>
                         <span class="font-weight-normal">4:35</span>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\demande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,9 +32,14 @@ class DemandeController extends Controller
     {
         $demande = new demande();
         $user = Auth::user();
+
         if($user->role_id != 2){
             return redirect()->back()->with('error', 'You are not allowed to do this action');
         }
+        if($user->demande){
+            return redirect()->back()->with('error', 'You have already sent a request');
+        }
+
         $demande->name = $user->name;
         $demande->user_id = $user->id;
         $demande->save();
@@ -61,7 +67,11 @@ class DemandeController extends Controller
      */
     public function update(Request $request, demande $demande)
     {
-        //
+        $user= User::find($demande->user_id); //find the user who sent the request
+        $user->role_id = 3;//change his role to artist
+        $user -> save(); //save the changes
+        $demande->delete();//delete the request
+        return redirect()->back()->with('success', 'Your request has been accepted');
     }
 
     /**
