@@ -33,6 +33,11 @@
 
 
   @section('content')
+        <form method="POST" action="{{route('demande.store')}}" class="ml-5">
+            @csrf
+            <button class=" btn text-success bg-white ml-5">
+                <i class="bi bi-headset text-black"></i>DEMANDE ARTIST</button>
+        </form>
                 <!-- categories -->
                 <ul id="filters" class="d-flex justify-content-center flex-wrap px-2 pt-4 mb-0 text-uppercase">
                     <li class="mb-5 mr-4">

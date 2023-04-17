@@ -1,14 +1,15 @@
 <?php
 
+use App\Models\User;
+use App\Models\album;
 use App\Models\music;
 use App\Models\category;
-use App\Models\album;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\MusicController;
+use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 
@@ -134,4 +135,6 @@ Route::group([
      Route::delete('/album/{id}', [AlbumController::class, 'destroy'])->name('album.destroy');
  });
 
+ //route for demande
+     Route::post('/demande', [DemandeController::class, 'store'])->name('demande.store');
 require __DIR__.'/auth.php';
