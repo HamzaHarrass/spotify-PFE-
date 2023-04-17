@@ -14,7 +14,7 @@
         <span>Songs</span>
       </a>
 
-      <a href="" class="navigation__list__item">
+      <a href="{{route('album')}}" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
         <span>Albums</span>
       </a>
@@ -30,9 +30,9 @@
 @endsection
 
 @section('content')
-<ul id="filters" class="d-flex justify-content-center flex-wrap px-2 pt-4 mb-0 text-uppercase">
+<ul id="filters" class="d-flex justify-content-center flex-wrap px-2 pt-4 mb-0 text-white">
     <li class="mb-5 mr-4">
-        <a class="position-relative" href="#">Music</a>
+        <a class="position-relative" href="#">song</a>
     </li>
     <li class="mb-5 mr-4">
         <a href="#">Albums</a>

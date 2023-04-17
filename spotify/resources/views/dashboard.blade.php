@@ -11,9 +11,9 @@
 
       <div class="" id="yourMusic">
 
-        <a href="#" class="navigation__list__item">
+        <a href="{{route('dashboard')}}" class="navigation__list__item">
           <i class="ion-headphone"></i>
-          <span>Songs</span>
+          <span>Home</span>
         </a>
 
         <a href="#" class="navigation__list__item">
@@ -36,10 +36,10 @@
                 <!-- categories -->
                 <ul id="filters" class="d-flex justify-content-center flex-wrap px-2 pt-4 mb-0 text-uppercase">
                     <li class="mb-5 mr-4">
-                        <a class="position-relative" href="playlist.html">Artist</a>
+                        <a class="position-relative" href="{{route('dashboard')}}">Home</a>
                     </li>
                     <li class="mb-5 mr-4">
-                        <a href="Albums.html">Albums</a>
+                        <a href="">Albums</a>
                     </li>
                     <li class="mb-5 mr-4">
                         <a href="#">Artists</a>

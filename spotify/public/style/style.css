@@ -63,7 +63,7 @@ a:hover {
 }
 /* hover button add category */
 
-#   category:hover{
+#category:hover{
     background-color: green;
 }
 
@@ -160,7 +160,7 @@ main {
 #filters li a {
     height: 90px;
     width: 100%;
-    color: white;
+    color: white !important;
 }
 
 #filters li:first-child a::after {
@@ -187,10 +187,14 @@ main {
     transform: translate(-50%, 3px);
 }
 
+#Album li a{
+    height: 90px;
+    width: 100%;
+    color: white !important;
+}
 #Album li:first-child a::after {
     content:'';
     display: block;
-    color: green;
     background-color: #adf62f;
     height: 2px;
     width: 40px;

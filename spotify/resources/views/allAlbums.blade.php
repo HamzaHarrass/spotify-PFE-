@@ -52,7 +52,7 @@
                         <div class="row w-100">
                             @foreach ($album as $item)
                             <div class="playlist col-6 col-md-3 col-lg-2 d-flex flex-column mb-3 px-2">
-                                <a class="position-relative" href="{{route('music_play',$item->id)}}">
+                                <a class="position-relative" href="{{route('albumplay',$item->id)}}">
                                     <img class="img-fluid" src="{{asset($item->image)}}" alt="">
                                     <div class="playlist_overlay position-absolute d-none w-100 h-100 bg-fading-black">
                                         <i class="position-absolute far fa-play-circle"></i>

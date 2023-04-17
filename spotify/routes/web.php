@@ -63,6 +63,16 @@ Route::get('/music_play/{id}', function ($artist_id) {
     return view('music_play', ['music' => $music,'category'=>$category , 'album'=>$album , 'artist'=>$artist]);
 })->middleware(['auth', 'verified', 'isUser'])->name('music_play');
 
+//route for albumplay
+
+route::get('/albumplay/{id}', function ($album_id) {
+    // $id = Auth::user()->id;
+    $album = album::where('id', $album_id)->first();
+    $music = Music::where("album_id", "=", $album_id)->get();
+    // dd($album);
+    return view('albumplay', ['music' => $music , 'album'=>$album]);
+})->middleware(['auth', 'verified', 'isUser'])->name('albumplay');
+
 //route for song
 
 Route::get('/song', function () {

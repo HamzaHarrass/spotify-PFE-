@@ -36,10 +36,11 @@
         <div class=" ml-5 col-10 sf-playlist">
             <div class="row">
                 <div class="col-2">
-                    <img src="{{asset($artist->image)}}"  class="img-fluid border rounded"/>
+                    <img src="{{asset($album->image)}}"  class="img-fluid border rounded"/>
                 </div>
                 <div class="col-10 d-flex align-items-end text-white">
-                    <h2 class="title">{{$artist->name}}</h2>
+                    <h2 class="title">{{$album->name}}</h2>
+                    <h2></h2>
                 </div>
             </div>
             <br/>

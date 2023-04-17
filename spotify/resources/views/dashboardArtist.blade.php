@@ -14,7 +14,7 @@
         <span>Songs</span>
       </a>
 
-      <a href="" class="navigation__list__item">
+      <a href="{{route('album')}}" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
         <span>Albums</span>
       </a>
