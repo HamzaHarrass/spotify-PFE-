@@ -136,5 +136,21 @@ Route::group([
  });
 
  //route for demande
-     Route::post('/demande', [DemandeController::class, 'store'])->name('demande.store');
+
+    Route::group([
+        'middleware' => 'isUser']
+    ,function(){
+        Route::post('/demande', [DemandeController::class, 'store'])->name('demande.store');
+    });
+
+    Route::get('/dashboardAdmin', function () {
+        $id = Auth::user()->id;
+        $user = User::where('role_id', '3')->get();
+        $music = music::with('user')->get();
+        $category = category::all();
+        $album = album::all();
+        return view('dashboardAdmin', ['music' => $music,'category'=>$category , 'album'=>$album , 'user'=>$user]);
+    })->middleware(['auth', 'verified', 'isAdmin'])->name('dashboardAdmin');
+
+
 require __DIR__.'/auth.php';
