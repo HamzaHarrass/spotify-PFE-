@@ -18,8 +18,16 @@
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
                     @auth
+                    @if (Auth::user()->role_id == 1)
+                    <a id="dashbord" class="btn text-white border rounded-lg" href="{{ url('/dashboardAdmin') }}" class="">Dashboard</a>
+                    @endif
+                    @if (Auth::user()->role_id == 2)
                         <a id="dashbord" class="btn text-white border rounded-lg" href="{{ url('/dashboard') }}" class="">Dashboard</a>
-                    @else
+                    @endif
+                    @if (Auth::user()->role_id == 3)
+                        <a id="dashbord" class="btn text-white border rounded-lg" href="{{ url('/dashboard_artist') }}" class="">Dashboard</a>
+                    @endif
+                        @else
                         <a id="login" href="{{ route('login') }}" class="btn rounded-pill border border-white mr-5 px-5 bg-black text-white text-uppercase">Log in</a>
 
                         @if (Route::has('register'))
