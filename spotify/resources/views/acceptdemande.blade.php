@@ -1,6 +1,16 @@
 @extends('layout')
 
 @section('content')
+        <!-- categories -->
+        <ul id="Album" class="d-flex justify-content-center flex-wrap px-2 pt-4 mb-0 text-uppercase">
+            <li class="mb-5 mr-4">
+                <a class="position-relative" href="{{route('dashboardAdmin')}}">Home</a>
+            </li>
+            <li class="mb-5 mr-4">
+                <a href="{{route('acceptdemande')}}">Demande</a>
+            </li>
+        </ul>
+
 <div id="recent" class="d-flex flex-column pl-3 pr-1">
     <h1 class="pl-2 text-white">Playlist</h1>
     <!-- <input class="w-25 r" type="text" name="" id=""> -->
@@ -16,7 +26,7 @@
                 </a>
                     <h2 class="mt-3 text-white text-star">{{$item->user->name}}</h2>
                     <form method="POST" action="{{ route('acceptdemande.update', $item->id)}}">
-                        @csrf   
+                        @csrf
                         <button class="btn btn-success">Accepter</button>
                     </form>
             </div>

@@ -9,12 +9,12 @@
 
     <div class="" id="yourMusic">
 
-      <a href="#" class="navigation__list__item">
+      <a href="{{route('dashboard')}}" class="navigation__list__item">
         <i class="ion-headphone"></i>
-        <span>Songs</span>
+        <span>Home</span>
       </a>
 
-      <a href="#" class="navigation__list__item">
+      <a href="{{route('allAlbums')}}" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
         <span>Albums</span>
       </a>
@@ -31,6 +31,18 @@
 
 @section('content')
 
+    <!-- categories -->
+    <ul id="filters" class="d-flex justify-content-center flex-wrap px-2 pt-4 mb-0 text-uppercase">
+        <li class="mb-5 mr-4">
+            <a class="position-relative" href="{{route('dashboard')}}">Home</a>
+        </li>
+        <li class="mb-5 mr-4">
+            <a href="{{route('allAlbums')}}">Albums</a>
+        </li>
+        <li class="mb-5 mr-4">
+            <a href="#">Artists</a>
+        </li>
+    </ul>
 <div class="container-fluid">
     <div class="row">
         <div class=" ml-5 col-10 sf-playlist">
@@ -95,13 +107,21 @@
 
 @endsection
 <script>
-    let currentAudioElement = null;
+var currentTime = null;
+var duration = null;
+var progress = null;
 
+
+let currentAudioElement = null;
     function playMusic(id) {
   var audio = document.querySelector(`#audio-${id}`);
   const audioElement = document.querySelector(`#audio-${id}`);
   const songInfo = document.querySelector('#song_info');
 
+    currentTime = document.getElementById('current-time');
+    duration = document.getElementById('duration');
+    progress = document.getElementById('progress');
+    console.log(currentTime);
   if (audioElement) {
     if (currentAudioElement) {
       currentAudioElement.pause();
@@ -109,6 +129,7 @@
 
     audioElement.play();
     currentAudioElement = audioElement;
+    currentAudioElement.addEventListener('timeupdate', timeUpdate);
 
     // Get the image and name of the current song
     const image = document.querySelector(`#song-${id} img`).src;
@@ -124,7 +145,6 @@
   // Get the media icons
     const playIcon = document.querySelector('#media_icons .fa-play-circle');
 
-
         playIcon.addEventListener('click', function() {
         if (currentAudioElement.paused) {
             currentAudioElement.play();
@@ -137,4 +157,26 @@
         }
         });
 }
+
+function timeUpdate() {
+  const currentSeconds = Math.floor(currentAudioElement.currentTime);
+  const totalSeconds = Math.floor(currentAudioElement.duration);
+
+  // Convert the current time to m:ss format
+  const currentMinutes = Math.floor(currentSeconds / 60);
+  const remainingSeconds = currentSeconds % 60;
+  const currentTimeFormatted = `${currentMinutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+
+  // Convert the duration to m:ss format
+  const totalMinutes = Math.floor(totalSeconds / 60);
+  const remainingDurationSeconds = totalSeconds % 60;
+  const durationFormatted = `${totalMinutes}:${remainingDurationSeconds < 10 ? '0' : ''}${remainingDurationSeconds}`;
+
+  // Update the HTML elements
+  const percent = (currentAudioElement.currentTime / currentAudioElement.duration) * 100;
+  progress.style.width = `${percent}%`;
+  currentTime.textContent = currentTimeFormatted;
+  duration.textContent = durationFormatted;
+    }
+
 </script>

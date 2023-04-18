@@ -93,7 +93,6 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,113,15,1) 100%);">
                         <img class="img-fluid" src="/image/lferda.jpg" alt="">
                     </a>
                     <div class="disappear ml-2 mr-4">
-                        <a href="#" class="d-block text-white">Ma Jolie</a>
                         <a href="#" id="current_song" class="text-grey">Lferda</a>
                     </div>
                     <div class="disappear d-flex flex-wrap">
@@ -115,13 +114,13 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,113,15,1) 100%);">
                         <i class="fas fa-undo"></i>
                     </div>
                     <div id="media_bar" class="d-flex align-items-center">
-                        <span class="font-weight-normal">0:00</span>
+                        <span id="current-time" class="font-weight-normal">0:00</span>
                         <div id="progress_bar" class="mx-4 rounded-pill">
-                            <div class="slider position-relative w-25 h-100 rounded-pill">
+                            <div class="slider position-relative h-100 rounded-pill" id="progress">
                               <div class="slider_handle position-absolute d-none rounded-circle"></div>
                             </div>
                           </div>
-                        <span class="font-weight-normal">4:35</span>
+                        <span id="duration" class="font-weight-normal">0:00</span>
                     </div>
                 </div>
 

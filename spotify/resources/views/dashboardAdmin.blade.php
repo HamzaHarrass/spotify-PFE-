@@ -9,10 +9,10 @@
         <!-- categories -->
         <ul id="filters" class="d-flex justify-content-center flex-wrap px-2 pt-4 mb-0 text-uppercase">
             <li class="mb-5 mr-4">
-                <a class="position-relative" href="playlist.html">Home</a>
+                <a class="position-relative" href="{{route('dashboardAdmin')}}">Home</a>
             </li>
             <li class="mb-5 mr-4">
-                <a href="Albums.html">Demande</a>
+                <a href="{{route('acceptdemande')}}">Demande</a>
             </li>
         </ul>
         <!-- /Artists -->

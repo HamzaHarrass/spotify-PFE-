@@ -16,7 +16,7 @@
           <span>Home</span>
         </a>
 
-        <a href="#" class="navigation__list__item">
+        <a href="{{route('allAlbums')}}" class="navigation__list__item">
           <i class="ion-ios-musical-notes"></i>
           <span>Albums</span>
         </a>
@@ -54,7 +54,7 @@
                         <a class="position-relative" href="{{route('dashboard')}}">Home</a>
                     </li>
                     <li class="mb-5 mr-4">
-                        <a href="">Albums</a>
+                        <a href="{{route('allAlbums')}}">Albums</a>
                     </li>
                     <li class="mb-5 mr-4">
                         <a href="#">Artists</a>
@@ -71,9 +71,6 @@
                             <div class="playlist col-6 col-md-3 col-lg-2 d-flex flex-column mb-3 px-2">
                                 <a class="position-relative" href="{{route('music_play',$item->id)}}">
                                     <img class="img-fluid" src="{{asset($item->image)}}" alt="">
-                                    <div class="playlist_overlay position-absolute d-none w-100 h-100 bg-fading-black">
-                                        <i class="position-absolute far fa-play-circle"></i>
-                                    </div>
                                 </a>
                                 <a href="#">
                                     <h2 class="mt-3 text-white text-center">{{$item->name}}</h2>
