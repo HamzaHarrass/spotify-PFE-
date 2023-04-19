@@ -1,44 +1,42 @@
 @extends('layout')
 
 @section('sidebar')
-<div class="navigation__list mt-5 ">
+<div class="navigation__list mt-5 d-md-block d-none">
 
     <div class="navigation__list__header ml-3 " role="button" data-toggle="collapse" href="#yourMusic"  aria-controls="yourMusic">
       Your Music
     </div>
 
     <div class="" id="yourMusic">
+        <a href="#" class="navigation__list__item">
+          <i class="ion-person"></i>
+          <span>Home</span>
+        </a>
 
       <a href="{{route('music')}}" class="navigation__list__item">
         <i class="ion-headphone"></i>
-        <span>Songs</span>
+        <span>Song</span>
       </a>
 
       <a href="{{route('album')}}" class="navigation__list__item">
         <i class="ion-ios-musical-notes"></i>
-        <span>Albums</span>
+        <span>Album</span>
       </a>
-
-      <a href="#" class="navigation__list__item">
-        <i class="ion-person"></i>
-        <span>Artists</span>
-      </a>
-
     </div>
 
   </div>
 @endsection
 
 @section('content')
-<ul id="filters" class="d-flex justify-content-center flex-wrap px-2 pt-4 mb-0 text-white">
+<ul id="filters" class="d-flex justify-content-center flex-wrap px-2 pt-4 mb-0 text-uppercase">
     <li class="mb-5 mr-4">
-        <a class="position-relative" href="#">song</a>
+        <a class="position-relative" href="{{route('music')}}">Song</a>
     </li>
     <li class="mb-5 mr-4">
-        <a href="#">Albums</a>
+        <a href="{{route('album')}}">Album</a>
     </li>
     <li class="mb-5 mr-4">
-        <a href="#">Artists</a>
+        <a href="#">Home</a>
     </li>
 </ul>
 <!-- /Music -->

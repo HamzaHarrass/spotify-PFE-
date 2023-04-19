@@ -1,5 +1,34 @@
 @extends('layout')
 
+@section('sidebar')
+<div id="displysidebar" class="navigation__list mt-5 d-md-block d-none ">
+
+    <div class="navigation__list__header ml-3 " role="button" data-toggle="collapse" href="#yourMusic"  aria-controls="yourMusic">
+      Your Music
+    </div>
+
+    <div class="" id="yourMusic">
+
+      <a href="{{route('dashboard')}}" class="navigation__list__item ">
+        <i class="ion-headphone"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="{{route('allAlbums')}}" class="navigation__list__item">
+        <i class="ion-ios-musical-notes"></i>
+        <span>Albums</span>
+      </a>
+
+      <a href="#" class="navigation__list__item">
+        <i class="ion-person"></i>
+        <span>Artists</span>
+      </a>
+
+    </div>
+
+  </div>
+@endsection
+
 @section('content')
         <!-- categories -->
         <ul id="Album" class="d-flex justify-content-center flex-wrap px-2 pt-4 mb-0 text-uppercase">

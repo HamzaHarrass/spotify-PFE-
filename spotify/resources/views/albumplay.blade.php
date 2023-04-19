@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('sidebar')
-<div class="navigation__list mt-5 ">
+<div class="navigation__list mt-5 d-md-block d-none">
 
     <div class="navigation__list__header ml-3 " role="button" data-toggle="collapse" href="#yourMusic"  aria-controls="yourMusic">
       Your Music

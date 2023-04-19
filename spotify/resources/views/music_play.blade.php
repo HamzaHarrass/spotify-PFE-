@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('sidebar')
-<div class="navigation__list mt-5 ">
+<div id="displysidebar" class="navigation__list mt-5 d-md-block d-none ">
 
     <div class="navigation__list__header ml-3 " role="button" data-toggle="collapse" href="#yourMusic"  aria-controls="yourMusic">
       Your Music
@@ -9,7 +9,7 @@
 
     <div class="" id="yourMusic">
 
-      <a href="{{route('dashboard')}}" class="navigation__list__item">
+      <a href="{{route('dashboard')}}" class="navigation__list__item ">
         <i class="ion-headphone"></i>
         <span>Home</span>
       </a>

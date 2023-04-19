@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/styleHome.css">
+ <!-- boxicons link -->
+    <link rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <!-- remixicon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-        <link rel="shortcut icon" href="images/icons/spotify.png" type="image/x-icon">
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="style/StyleHome.css">
-    </head>
-    <body class="antialiased d-flex flex-column">
-        <div class="d-flex justify-content-end align-items-center w-100 px-5">
-            @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
-                    @auth
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900&display=splay=swap" rel="stylesheet">
+</head>
+<body>
+
+                {{-- <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
+
                     @if (Auth::user()->role_id == 1)
                     <a id="dashbord" class="btn text-white border rounded-lg" href="{{ url('/dashboardAdmin') }}" class="">Dashboard</a>
                     @endif
@@ -35,123 +37,50 @@
                         @endif
                     @endauth
                 </div>
+            @endif --}}
+    <header>
+        <a href="#" class="logo"><span>S</span>POTIF<span>Y</span></a>
+        <ul class="navlist">
+            @if (Route::has('login'))
+            @auth
+            @if (Auth::user()->role_id == 1)
+            <li><a href="{{ url('/dashboardAdmin') }}">Dashborad</a></li>
             @endif
-        </div>
-                    <div id="wrapper">
-                        <div id="container">
-                          <div id="headphones-container">
-                            <div id="headphones"></div>
-                            <div id="ears">
-                              <div id="ear-one"></div>
-                              <div id="ear-two"></div>
-                              <div id="mic-stand">
-                                <div id="mic-one"></div>
-                                <div id="mic-two"></div>
-                              </div>
-                            </div>
-                          </div>
+            @if (Auth::user()->role_id == 2)
+            <li><a href="{{ url('/dashboard') }}">Dashborad</a></li>
+            @endif
+            @if (Auth::user()->role_id == 3)
+            <li><a href="{{ url('/dashboard_artist') }}">Dashborad</a></li>
+            @endif
+            @else
+            <li><a href="{{ route('login') }}">Sign Up</a></li>
+            <li><a href="{{ route('register') }}">Log In</a></li>
+            @endauth
+            @endif
+        </ul>
+        <div class="bx bx-menu" id="menu-icon"></div>
+    </header>
 
-                          <div class="disk">
-                            <div id="two">
-                              <div id="three">
-                                <div id="four">
-                                  <div id="mic">
-                                    <div id="lines">
-                                      <div class="line"></div>
-                                      <div class="line"></div>
-                                      <div class="line"></div>
-                                      <div class="line"></div>
-                                      <div class="line"></div>
-                                      <div class="line"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div id="equalizer">
-                          <div id="horizontal"></div>
-                          <div id="vertical-lines">
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                            <div class="vertical"></div>
-                          </div>
-                        </div>
-                        <h1>Spotify</h1>
-                        {{-- <h2>Spotify</h2> --}}
-                    </div>
-        {{-- </div> --}}
-        <script src="./script/script.js"></script>
-    </body>
+    <section class="banner">
+        <div class="content">
+            <h2>Millions of songs.</h2>
+            <h1>Spotify</h1>
+            <p>Spotify is now free on mobile, tablet and computer. Listen to the right music, wherever you are.</p>
+            <a href="#" class="btn"><i class="ri-spotify-fill"></i>GET SPOTIFY FREE</a>
+        </div>
+        <div class="img">
+            <img width="700" src="images/lticolore-beau-modele-feminin-concept-emotions-humaines-expression-faciale-ventes-publicite-mode.png" alt="">
+        </div>
+    </section>
+
+    <div class="icons">
+        <a id="instagram"  href=""><i class="ri-instagram-line"></i></a>
+        <a id="youtube" href=""><i class="ri-youtube-line"></i></a>
+        <a id="facebook" href=""><i class="ri-facebook-circle-line"></i></a>
+    </div>
+
+    <div class="scroll-down">
+        <a href="#about"><i class="ri-arrow-down-s-line"></i></a>
+    </div>
+</body>
 </html>
