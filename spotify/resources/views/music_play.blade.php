@@ -67,7 +67,6 @@
                                 <th></th>
                                 <th></th>
                                 <th>
-                                    <span class="fa fa-thumbs-up"></span>
                                 </th>
                             </thead>
                             <tbody>

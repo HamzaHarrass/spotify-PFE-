@@ -13,6 +13,7 @@ use App\Http\Controllers\MusicController;
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,8 +114,15 @@ Route::group([
     Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
     Route::put('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::delete('/dashboardAdmin/{request}', [ProfileController::class, 'deleteUser'])->name('profile.deleteUser');
 });
 
+
+Route::group([
+    'middleware' => ['auth', 'verified', 'isArtist','isAdmin']
+],function(){
+    Route::delete('/album/{id}', [AlbumController::class, 'destroy'])->name('album.destroy');
+});
 
 // route for music
 
@@ -133,7 +141,6 @@ Route::group([
      Route::get('/dashboard_artist', [MusicController::class, 'dashboard_artist'])->name('album');
      Route::post('/album', [AlbumController::class, 'store'])->name('album.store');
      Route::put('/album/{album}', [AlbumController::class, 'update'])->name('album.update');
-     Route::delete('/album/{id}', [AlbumController::class, 'destroy'])->name('album.destroy');
  });
 
  //route for demande

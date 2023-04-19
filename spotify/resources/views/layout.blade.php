@@ -10,12 +10,10 @@
         <link rel="stylesheet" href="/style/style.css">
         <link rel="shortcut icon" href="images/icons/spotify.png" type="image/x-icon">
     </head>
-    <body class="overflow-hidden" style="background: rgb(0,0,0);
-background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,113,15,1) 100%);">
+    <body class="overflow-hidden" style="background:black;">
         <div class="container-fluid d-flex px-0">
             <!-- Left sidebar -->
-            <nav id="sidebar" class="d-flex justify-content-between flex-column fixed-left flex-shrink-0 px-0 text-grey" style="background: rgb(0,0,0);
-            background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(1,94,14,1) 100%);">
+            <nav id="sidebar" class="d-flex justify-content-between flex-column fixed-left flex-shrink-0 px-0 text-grey" style="background:black;">
                 <div class="wrapper">
                     <!-- Logo -->
                     <a href="home.html" id="logo" class="d-flex align-items-center py-3 pl-3 disappear">
@@ -66,7 +64,7 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,113,15,1) 100%);">
             </nav>
 
             <!-- App content -->
-            <main class="d-flex flex-column w-100 px-0 text-grey">
+            <main class="d-flex flex-column w-100 px-0 text-grey" style="height: 80vh">
                 <div  style="margin-right: 2%" id="upgrade_bar" class="d-flex justify-content-end  align-items-center fixed-top mt-3">
                     <div  class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -84,7 +82,7 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,113,15,1) 100%);">
 
                 @yield('content')
 
-
+            </main>
             <!-- Now-playing bar -->
             <footer id="now_playing" class="d-flex justify-content-between align-items-center px-sm-3 fixed-bottom bg-dark-grey">
                 <!-- Left section (current song) -->

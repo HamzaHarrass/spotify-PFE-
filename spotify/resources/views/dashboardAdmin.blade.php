@@ -70,7 +70,7 @@
                                         <tr>
                                             <td><img src="{{asset($item->image)}}" alt="Image de l'artiste" width="50px"></td>
                                             <td>{{$item->name}}</td>
-                                            <td><form class="" action="{{route('profile.destroy', $item->id)}}" method="post">
+                                            <td><form class="" action="{{route('profile.deleteUser', $item->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger ">Delete</button>

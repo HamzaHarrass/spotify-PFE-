@@ -17,27 +17,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900&display=splay=swap" rel="stylesheet">
 </head>
 <body>
-
-                {{-- <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
-
-                    @if (Auth::user()->role_id == 1)
-                    <a id="dashbord" class="btn text-white border rounded-lg" href="{{ url('/dashboardAdmin') }}" class="">Dashboard</a>
-                    @endif
-                    @if (Auth::user()->role_id == 2)
-                        <a id="dashbord" class="btn text-white border rounded-lg" href="{{ url('/dashboard') }}" class="">Dashboard</a>
-                    @endif
-                    @if (Auth::user()->role_id == 3)
-                        <a id="dashbord" class="btn text-white border rounded-lg" href="{{ url('/dashboard_artist') }}" class="">Dashboard</a>
-                    @endif
-                        @else
-                        <a id="login" href="{{ route('login') }}" class="btn rounded-pill border border-white mr-5 px-5 bg-black text-white text-uppercase">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a id="register" href="{{ route('register') }}" class="btn rounded-pill border border-white mr-5 px-5 bg-black text-white text-uppercasejjj">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif --}}
     <header>
         <a href="#" class="logo"><span>S</span>POTIF<span>Y</span></a>
         <ul class="navlist">
@@ -53,8 +32,8 @@
             <li><a href="{{ url('/dashboard_artist') }}">Dashborad</a></li>
             @endif
             @else
-            <li><a href="{{ route('login') }}">Sign Up</a></li>
-            <li><a href="{{ route('register') }}">Log In</a></li>
+            <li><a href="{{ route('register') }}">Sign Up</a></li>
+            <li><a href="{{ route('login') }}">Log In</a></li>
             @endauth
             @endif
         </ul>
