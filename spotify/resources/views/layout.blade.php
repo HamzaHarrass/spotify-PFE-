@@ -125,10 +125,15 @@
                 <!-- Right section (volume and miscellaneous) -->
                 <div id="volume" class="disappear align-items-center d-flex text-white">
                     <i class="mr-3 fas fa-volume-up"></i>
-                    <div id="volume_bar" class="rounded-pill">
+                    {{-- <div id="volume_bar" class="rounded-pill">
                         <div class="slider position-relative w-25 h-100 rounded-pill">
                             <div class="slider_handle position-absolute d-none rounded-circle"></div>
                         </div>
+                    </div> --}}
+                    {{-- <input type="range"> --}}
+                    <div class="input-range">
+                        <input type="range" max="100" min="0" id="audioVolume" value="50" />
+                        <span class="input-range__bubble">2</span>
                     </div>
                 </div>
             </footer>

@@ -111,11 +111,12 @@ var duration = null;
 var progress = null;
 
 
-let currentAudioElement = null;
+var currentAudioElement = null;
     function playMusic(id) {
   var audio = document.querySelector(`#audio-${id}`);
   const audioElement = document.querySelector(`#audio-${id}`);
   const songInfo = document.querySelector('#song_info');
+    const volume = document.querySelector('#audioVolume');
 
     currentTime = document.getElementById('current-time');
     duration = document.getElementById('duration');
@@ -126,6 +127,13 @@ let currentAudioElement = null;
       currentAudioElement.pause();
     }
 
+    volume.addEventListener('change', function(e) {
+        console.log(currentAudioElement)
+        console.log(volume.value)
+    //    currentAudioElement.setAttribute("volume", volume.value / 100);
+       currentAudioElement.volume = e.target.value / 100;
+    });
+    
     audioElement.play();
     currentAudioElement = audioElement;
     currentAudioElement.addEventListener('timeupdate', timeUpdate);

@@ -336,3 +336,106 @@ main {
     width: 25px;
     display: block;
 }
+.input-range {
+    --track-height: 4px;
+    --slider-thumb-size: 16px;
+
+    --track-color: #b8b8b8;
+    --track-fill-color: green;
+    --slider-thumb-color: green;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+  }
+
+  .input-range__bubble {
+    --gap: -32;
+    --vertical: -2;
+
+    --placing: calc(var(--slider-thumb-size) / var(--vertical));
+    --float: calc(var(--placing) + calc(var(--gap) * 1px));
+
+    padding: 12px;
+
+    position: absolute;
+    left: 0;
+
+    background-color: white;
+    box-shadow: 2px 0 15px -2px rgba(0, 0, 0, 0.4);
+
+    border-radius: 5px;
+
+    font-size: 12px;
+    font-weight: 400;
+
+    transform:
+      translateX(-50%)
+      translateY(var(--float));
+
+    opacity: 0;
+
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+
+    width: 100%;
+    height: var(--track-height);
+
+    border-radius: var(--track-height);
+
+    background: var(--track-color);
+
+    cursor: pointer;
+  }
+
+  /* Thumb */
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+
+    height: var(--slider-thumb-size);
+    width: var(--slider-thumb-size);
+
+    border-radius: 50%;
+    border: none;
+
+    background: var(--slider-thumb-color);
+    box-shadow: -1px 0 1px 1px rgba(0, 0, 0, 0.2);
+
+    outline-offset: 2px;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+
+    height: var(--slider-thumb-size);
+    width: var(--slider-thumb-size);
+
+    border-radius: 50%;
+    border: none;
+
+    background: var(--slider-thumb-color);
+    box-shadow: -1px 0 1px 1px rgba(0, 0, 0, 0.2);
+
+    outline-offset: 2px;
+  }
+
+  /* Thumb Keyboard Focus */
+
+  input[type="range"]:focus-visible {
+    outline: none;
+  }
+
+  input[type="range"]:focus-visible::-webkit-slider-thumb {
+    outline: 2px solid #1a1a1a;
+  }
+
+  input[type="range"]:focus-visible::-moz-range-thumb {
+    outline: 2px solid #1a1a1a;
+  }
+
+
