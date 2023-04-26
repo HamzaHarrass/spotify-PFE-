@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Album;
+use App\Models\music;
 use App\Models\category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -89,5 +91,21 @@ class AlbumController extends Controller
         $category = Album::find($id);
         $category->delete();
         return redirect()->back();
+    }
+
+    public function allAlbums()
+    {
+        $user = User::where('role_id', '3')->get();
+        $music = music::with('user')->get();
+        $category = category::all();
+        $album = album::all();
+        return view('allAlbums', ['music' => $music,'category'=>$category , 'album'=>$album , 'user'=>$user]);
+    }
+
+    public function albumPlay($album_id)
+    {
+        $album = album::where('id', $album_id)->first();
+        $music = Music::where("album_id", "=", $album_id)->get();
+        return view('albumplay', ['music' => $music , 'album'=>$album]);
     }
 }

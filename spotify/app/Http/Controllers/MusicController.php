@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use FFMpeg\FFProbe;
+use App\Models\User;
 use App\Models\album;
 use App\Models\music;
 use App\Models\category;
@@ -131,5 +132,22 @@ public function edit($id)
         $music = music::find($id);
         $music->delete();
         return redirect()->back();
+    }
+
+    public function musicPlay($artist_id)
+    {
+        $artist = User::where('id', $artist_id)->first();
+        $music = music::where('user_id', $artist_id)->get();
+        $category = category::all();
+        $album = album::all();
+        return view('music_play', ['music' => $music,'category'=>$category , 'album'=>$album , 'artist'=>$artist]);
+    }
+
+    public function song()
+    {
+        $id = Auth::user()->id;
+        $music = music::where("user_id", "=", $id)->get();
+        $category = category::all();
+        return view('song', ['music' => $music,'category'=>$category ]);
     }
 }

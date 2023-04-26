@@ -14,7 +14,8 @@ class DemandeController extends Controller
      */
     public function index()
     {
-        //
+        $demande = Demande::all();
+        return view('acceptdemande', ['demande' => $demande]);
     }
 
     /**

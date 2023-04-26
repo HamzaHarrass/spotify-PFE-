@@ -13,6 +13,7 @@ use App\Http\Controllers\MusicController;
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 /*
@@ -31,71 +32,60 @@ Route::get('/', function () {
 });
 
 
-//route for dashboard
+Route::middleware(['auth', 'verified'])->group(function () {
 
-Route::get('/dashboard', function () {
-    $id = Auth::user()->id;
-    $user = User::where('role_id', '3')->get();
-    $music = music::with('user')->get();
-    $category = category::all();
-    $album = album::all();
-    return view('dashboard', ['music' => $music,'category'=>$category , 'album'=>$album , 'user'=>$user]);
-})->middleware(['auth', 'verified', 'isUser'])->name('dashboard');
+    // middleware Admin
+    Route::middleware(['isAdmin'])->group(function (){
+        Route::get('/categories', function () {
+            return view('categories');
+        })->name('categories');
 
-//route for allAlbums
+        Route::get('/category', [CategoryController::class, 'index'])->name('category');
+        Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+        Route::put('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
+        Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+        Route::delete('/dashboardAdmin/{request}', [ProfileController::class, 'deleteUser'])->name('profile.deleteUser');
+        Route::get('/dashboardAdmin', [DashboardController::class, 'dashboardAdmin'])->name('dashboardAdmin');
+        Route::post('/acceptdemande/{demande}', [DemandeController::class, 'update'])->name('acceptdemande.update');
+        Route::get('/acceptdemande', [DemandeController::class, 'index'])->name('acceptdemande');
 
-Route::get('/allAlbums', function () {
-    $id = Auth::user()->id;
-    $user = User::where('role_id', '3')->get();
-    $music = music::with('user')->get();
-    $category = category::all();
-    $album = album::all();
-    return view('allAlbums', ['music' => $music,'category'=>$category , 'album'=>$album , 'user'=>$user]);
-})->middleware(['auth', 'verified', 'isUser'])->name('allAlbums');
+    });
 
-// route for music_play
+    // middleware Artist
+    Route::middleware(['isArtist'])->group(function (){
+        Route::get('/song', [MusicController::class, 'song'])->name('song');
+        Route::get('music', function () {
+            return view('music');
+        })->name('music');
 
-Route::get('/music_play/{id}', function ($artist_id) {
-    $id = Auth::user();
-    $artist = User::where('id', $artist_id)->first();
-    $music = music::where('user_id', $artist_id)->get();
-    // dd($music);
-    $category = category::all();
-    $album = album::all();
-    // dd($artist);
-    return view('music_play', ['music' => $music,'category'=>$category , 'album'=>$album , 'artist'=>$artist]);
-})->middleware(['auth', 'verified', 'isUser'])->name('music_play');
+        Route::get('/music', [MusicController::class, 'index'])->name('music');
+        //  Route::get('/Music', [MusicController::class, 'index'])->name('music');
+        Route::get('/dashboard_artist', [MusicController::class, 'dashboard_artist'])->name('music');
+        Route::post('/music', [MusicController::class, 'store'])->name('music.store');
+        Route::put('/music/{music}', [MusicController::class, 'update'])->name('music.update');
+        Route::delete('/music/{id}', [MusicController::class, 'destroy'])->name('music.destroy');
 
-//route for albumplay
+        // route for album
+        Route::get('/album', [AlbumController::class, 'index'])->name('album');
+        Route::get('/dashboard_artist', [MusicController::class, 'dashboard_artist'])->name('album');
+        Route::post('/album', [AlbumController::class, 'store'])->name('album.store');
+        Route::put('/album/{album}', [AlbumController::class, 'update'])->name('album.update');
+    });
 
-route::get('/albumplay/{id}', function ($album_id) {
-    // $id = Auth::user()->id;
-    $album = album::where('id', $album_id)->first();
-    $music = Music::where("album_id", "=", $album_id)->get();
-    // dd($album);
-    return view('albumplay', ['music' => $music , 'album'=>$album]);
-})->middleware(['auth', 'verified', 'isUser'])->name('albumplay');
+    // middleware User
+    Route::middleware(['isUser'])->group(function (){
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('/allAlbums', [AlbumController::class, 'allAlbums'])->name('allAlbums');
+        Route::get('/music_play/{id}', [MusicController::class, 'musicPlay'])->name('music_play');
+        route::get('/albumplay/{id}', [AlbumController::class, 'albumPlay'])->name('albumplay');
+        Route::post('/demande', [DemandeController::class, 'store'])->name('demande.store');
+    });
 
-//route for song
-
-Route::get('/song', function () {
-    $id = Auth::user()->id;
-    $music = music::where("user_id", "=", $id)->get();
-    $category = category::all();
-    return view('song', ['music' => $music,'category'=>$category ]);
-})->middleware(['auth', 'verified', 'isArtist'])->name('song');
-
-// route for category
-
-Route::get('/categories', function () {
-    return view('categories');
-})->middleware(['auth', 'verified', 'isAdmin'])->name('categories');
-
- // route for music
-
-Route::get('music', function () {
-    return view('music');
-})->middleware(['auth', 'verified', 'isArtist'])->name('music');
+    // middleware Admin and Artist
+    Route::middleware(['isArtist','isAdmin'])->group(function (){
+        Route::delete('/album/{id}', [AlbumController::class, 'destroy'])->name('album.destroy');
+    });
+});
 
 
 
@@ -106,76 +96,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-    //  route for category
-Route::group([
-    'middleware' => 'isAdmin'
-],function(){
-    Route::get('/category', [CategoryController::class, 'index'])->name('category');
-    Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
-    Route::put('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
-    Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
-    Route::delete('/dashboardAdmin/{request}', [ProfileController::class, 'deleteUser'])->name('profile.deleteUser');
-});
-
-
-Route::group([
-    'middleware' => ['auth', 'verified', 'isArtist','isAdmin']
-],function(){
-    Route::delete('/album/{id}', [AlbumController::class, 'destroy'])->name('album.destroy');
-});
-
-// route for music
-
- Route::group([
-        'middleware' => 'isArtist'
- ],function(){
-     Route::get('/music', [MusicController::class, 'index'])->name('music');
-    //  Route::get('/Music', [MusicController::class, 'index'])->name('music');
-     Route::get('/dashboard_artist', [MusicController::class, 'dashboard_artist'])->name('music');
-     Route::post('/music', [MusicController::class, 'store'])->name('music.store');
-     Route::put('/music/{music}', [MusicController::class, 'update'])->name('music.update');
-     Route::delete('/music/{id}', [MusicController::class, 'destroy'])->name('music.destroy');
-
-     // route for album
-     Route::get('/album', [AlbumController::class, 'index'])->name('album');
-     Route::get('/dashboard_artist', [MusicController::class, 'dashboard_artist'])->name('album');
-     Route::post('/album', [AlbumController::class, 'store'])->name('album.store');
-     Route::put('/album/{album}', [AlbumController::class, 'update'])->name('album.update');
- });
-
- //route for demande
-
-    Route::group([
-        'middleware' => 'isUser']
-    ,function(){
-        Route::post('/demande', [DemandeController::class, 'store'])->name('demande.store');
-    });
-
-    Route::get('/dashboardAdmin', function () {
-        $id = Auth::user()->id;
-        $user = User::where('role_id', '3')->get();
-        $music = music::with('user')->get();
-        $category = category::all();
-        $album = album::all();
-        // statistics
-        $artistCount = User::where('role_id', '3')->count();
-        $userCount = User::where('role_id', '2')->count();
-        $albumCount = Album::count();
-        $stats = [
-            'artistCount' => $artistCount,
-            'userCount' => $userCount,
-            'albumCount' => $albumCount,
-        ];
-        // dd($stats);
-        return view('dashboardAdmin', ['music' => $music,'category'=>$category , 'album'=>$album , 'user'=>$user, 'stats' => $stats]);
-    })->middleware(['auth', 'verified', 'isAdmin'])->name('dashboardAdmin');
-
-
-    // route for accepter demande
-    Route::post('/acceptdemande/{demande}', [DemandeController::class, 'update'])->name('acceptdemande.update');
-
-    Route::get('/acceptdemande',function(){
-        $demande = Demande::all();
-                return view('acceptdemande', ['demande' => $demande]);
-    })->middleware(['auth', 'verified', 'isAdmin'])->name('acceptdemande');
 require __DIR__.'/auth.php';

@@ -122,18 +122,19 @@ var currentAudioElement = null;
     duration = document.getElementById('duration');
     progress = document.getElementById('progress');
     console.log(currentTime);
+
   if (audioElement) {
     if (currentAudioElement) {
       currentAudioElement.pause();
     }
 
+
     volume.addEventListener('change', function(e) {
         console.log(currentAudioElement)
         console.log(volume.value)
-    //    currentAudioElement.setAttribute("volume", volume.value / 100);
        currentAudioElement.volume = e.target.value / 100;
     });
-    
+
     audioElement.play();
     currentAudioElement = audioElement;
     currentAudioElement.addEventListener('timeupdate', timeUpdate);
@@ -141,12 +142,10 @@ var currentAudioElement = null;
     // Get the image and name of the current song
     const image = document.querySelector(`#song-${id} img`).src;
     const name = document.querySelector(`#song-${id} .song-name`).textContent;
-    const artist = document.querySelector(`#song-${id} .artist`).textContent;
 
     // Update the song info section
     songInfo.querySelector('img').src = image;
     songInfo.querySelector('#current_song').textContent = name;
-    songInfo.querySelector('.disappear').classList.remove('disappear');
   }
 
   // Get the media icons
@@ -172,7 +171,7 @@ function timeUpdate() {
   // Convert the current time to m:ss format
   const currentMinutes = Math.floor(currentSeconds / 60);
   const remainingSeconds = currentSeconds % 60;
-  const currentTimeFormatted = `${currentMinutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  const currentTimeFormatted = `${currentMinutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`; 
 
   // Convert the duration to m:ss format
   const totalMinutes = Math.floor(totalSeconds / 60);
