@@ -27,3 +27,7 @@ Profil utilisateur : une section du site web où les utilisateurs peuvent gérer
 
 
 ## Exigences techniques : 
+- laravel 
+- javascript 
+- css 
+- html
